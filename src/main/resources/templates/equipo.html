@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipos</title>
+</head>
+<body>
+
+<h1>Lista de Equipos</h1>
+
+<!-- Tabla para mostrar los equipos -->
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Categoria</th>
+        <th>Estado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iteramos sobre la lista de equipos -->
+    <tr th:each="equipo : ${equipos}">
+        <td th:text="${equipo.id}"></td>
+        <td th:text="${equipo.nombre}"></td>
+        <td th:text="${equipo.categoria}"></td>
+        <td th:text="${equipo.estado}"></td>
+        <td>
+            <!-- Enlace para editar -->
+            <a th:href="@{/equipo/editar/{id}(id=${equipo.id})}">Editar</a> |
+            <!-- Enlace para eliminar -->
+            <a th:href="@{/equipo/eliminar/{id}(id=${equipo.id})}">Eliminar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Enlace para crear un nuevo equipo -->
+<a href="/equipo/crear">Crear nuevo equipo</a>
+
+</body>
+</html>

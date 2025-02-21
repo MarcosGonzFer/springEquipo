@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${jugador.id != null} ? 'Editar Jugador' : 'Nuevo Jugador'"></title>
+</head>
+<body>
+<h1 th:text="${jugador.id != null} ? 'Editar Jugador' : 'Nuevo Jugador'"></h1>
+
+<form th:action="@{/jugador/guardar}" th:object="${jugador}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <label>Nombre: <input type="text" th:field="*{nombre}" required/></label><br>
+    <label>Edad: <input type="number" th:field="*{edad}" required/></label><br>
+    <label>Nivel: <input type="text" th:field="*{nivel}" required> </label>
+    <button type="submit">Guardar</button>
+</form>
+
+<a href="/jugador">Volver</a>
+</body>
+</html>
