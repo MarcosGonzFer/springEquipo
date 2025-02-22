@@ -9,13 +9,33 @@
 <h1 th:text="${jugador.id != null} ? 'Editar Jugador' : 'Nuevo Jugador'"></h1>
 
 <form th:action="@{/jugador/guardar}" th:object="${jugador}" method="post">
+    <!-- ID (oculto) -->
     <input type="hidden" th:field="*{id}">
+
+    <!-- Nombre -->
     <label>Nombre: <input type="text" th:field="*{nombre}" required/></label><br>
+
+    <!-- Edad -->
     <label>Edad: <input type="number" th:field="*{edad}" required/></label><br>
-    <label>Nivel: <input type="text" th:field="*{nivel}" required> </label>
+
+    <!-- Nivel -->
+    <label>Nivel: <input type="text" th:field="*{nivel}" required/></label><br>
+
+    <!-- Seleccionar Equipo -->
+    <label>Equipo:
+        <select th:field="*{equipo.id}">
+            <option value="">Selecciona un equipo</option>
+            <option th:each="equipo : ${equipos}"
+                    th:value="${equipo.id}"
+                    th:text="${equipo.nombre}"></option>
+        </select>
+    </label>
+    <br>
+
+    <!-- Botón de Guardar -->
     <button type="submit">Guardar</button>
 </form>
 
-<a href="/jugador">Volver</a>
+<a href="/equipo">Volver a Equipos</a>
 </body>
 </html>

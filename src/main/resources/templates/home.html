@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+</head>
+<body>
+<h1>Lista de Equipos</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Estado</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="equipo : ${equipos}">
+        <td th:text="${equipo.id}"></td>
+        <td th:text="${equipo.nombre}"></td>
+        <td th:text="${equipo.categoria}"></td>
+        <td th:text="${equipo.estado}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Lista de Jugadores</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Nivel</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="jugador : ${jugadores}">
+        <td th:text="${jugador.id}"></td>
+        <td th:text="${jugador.nombre}"></td>
+        <td th:text="${jugador.edad}"></td>
+        <td th:text="${jugador.nivel}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

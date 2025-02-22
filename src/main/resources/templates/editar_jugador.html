@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -9,17 +10,34 @@
 <h1>Editar Jugador</h1>
 
 <form th:action="@{/jugadores/editar/{id}(id=${jugador.id})}" th:object="${jugador}" method="post">
+    <!-- ID (oculto) -->
     <input type="hidden" th:field="*{id}" />
 
-    <label >Nombre:</label>
+    <!-- Nombre -->
+    <label>Nombre:</label>
     <input type="text" th:field="*{nombre}" required /><br><br>
 
-    <label >Edad:</label>
+    <!-- Edad -->
+    <label>Edad:</label>
     <input type="number" th:field="*{edad}" required /><br><br>
 
-    <label >Nivel:</label>
-    <input th:type="text" th:field="*{nivel}" required><br><br>
+    <!-- Nivel -->
+    <label>Nivel:</label>
+    <input type="text" th:field="*{nivel}" required><br><br>
 
+    <!-- Seleccionar Equipo -->
+    <label>Equipo:</label>
+    <select th:field="*{equipo.id}">
+        <option value="">Selecciona un equipo</option>
+        <option th:each="equipo : ${equipos}"
+                th:value="${equipo.id}"
+                th:text="${equipo.nombre}"
+                th:selected="${jugador.equipo?.id == equipo.id}">
+        </option>
+    </select>
+    <br><br>
+
+    <!-- Botón de Actualizar -->
     <button type="submit">Actualizar Jugador</button>
 </form>
 

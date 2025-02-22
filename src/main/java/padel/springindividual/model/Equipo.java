@@ -1,12 +1,11 @@
 package padel.springindividual.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
-    @Entity
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
     @Table(name = "equipo")
     public class Equipo {
 
@@ -17,7 +16,18 @@ import jakarta.persistence.Table;
         private String categoria;
         private String estado;
 
-        public Equipo() {
+        @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
+        private List<Jugador> jugadores;
+
+    public List<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(List<Jugador> jugadores) {
+        this.jugadores = jugadores;
+    }
+
+    public Equipo() {
 
         }
         public Equipo(String nombre, String categoria, String estado) {

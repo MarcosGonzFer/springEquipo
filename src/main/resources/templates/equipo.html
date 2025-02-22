@@ -17,6 +17,8 @@
         <th>Nombre</th>
         <th>Categoria</th>
         <th>Estado</th>
+        <th>Jugadores</th> <!-- Nueva columna para los jugadores -->
+        <th>Acciones</th> <!-- Columna para editar y eliminar -->
     </tr>
     </thead>
     <tbody>
@@ -26,10 +28,18 @@
         <td th:text="${equipo.nombre}"></td>
         <td th:text="${equipo.categoria}"></td>
         <td th:text="${equipo.estado}"></td>
+
+        <!-- Iteramos sobre los jugadores de cada equipo -->
         <td>
-            <!-- Enlace para editar -->
+            <ul>
+                <li th:each="jugador : ${equipo.jugadores}" th:text="${jugador.nombre}"></li> <!-- Mostrar el nombre de cada jugador -->
+            </ul>
+        </td>
+
+        <td>
+            <!-- Enlace para editar el equipo -->
             <a th:href="@{/equipo/editar/{id}(id=${equipo.id})}">Editar</a> |
-            <!-- Enlace para eliminar -->
+            <!-- Enlace para eliminar el equipo -->
             <a th:href="@{/equipo/eliminar/{id}(id=${equipo.id})}">Eliminar</a>
         </td>
     </tr>

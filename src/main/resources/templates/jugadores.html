@@ -17,6 +17,8 @@
         <th>Nombre</th>
         <th>Edad</th>
         <th>Nivel</th>
+        <th>Equipo</th> <!-- Añadir columna para mostrar el equipo -->
+        <th>Acciones</th> <!-- Columna para acciones de editar/eliminar -->
     </tr>
     </thead>
     <tbody>
@@ -25,12 +27,14 @@
         <td th:text="${jugador.nombre}"></td>
         <td th:text="${jugador.edad}"></td>
         <td th:text="${jugador.nivel}"></td>
+        <td th:text="${jugador.equipo != null ? jugador.equipo.nombre : 'Sin equipo'}"></td> <!-- Mostrar nombre del equipo -->
         <td>
-            <a th:href="@{|/jugadores/editar/{id}(id=${jugador.id})}">Editar</a> |
-            <a th:href="@{|/jugadores/eliminar/{id}(id=${jugador.id})}">Eliminar</a>
+            <a th:href="@{|/jugador/editar/{id}(id=${jugador.id})}">Editar</a> |
+            <a th:href="@{|/jugador/eliminar/{id}(id=${jugador.id})}">Eliminar</a>
         </td>
     </tr>
     </tbody>
 </table>
+
 </body>
 </html>

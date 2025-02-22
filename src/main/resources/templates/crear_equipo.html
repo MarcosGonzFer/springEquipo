@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Nuevo Equipo</title>
+</head>
+<body>
+
+<h1>Crear Nuevo Equipo</h1>
+
+<!-- Formulario para crear un nuevo equipo -->
+<form th:action="@{/equipo/guardar}" th:object="${equipo}" method="post">
+    <label>Nombre:
+        <input type="text" th:field="*{nombre}" placeholder="Nombre del equipo" required/>
+    </label>
+    <br>
+
+    <label>Categoría:
+        <input type="text" th:field="*{categoria}" placeholder="Categoría del equipo" required/>
+    </label>
+    <br>
+
+    <label>Estado:
+        <select th:field="*{estado}" required>
+            <option value="">Selecciona un estado</option>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+        </select>
+    </label>
+    <br>
+
+    <button type="submit">Guardar Equipo</button>
+</form>
+
+<!-- Enlace para volver a la lista de equipos -->
+<a href="/equipo">Volver a la lista de equipos</a>
+
+</body>
+</html>
