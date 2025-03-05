@@ -1,46 +1,60 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Jugador</title>
+    <!-- Incluyendo Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Editar Jugador</h1>
 
-<form th:action="@{/jugadores/editar/{id}(id=${jugador.id})}" th:object="${jugador}" method="post">
-    <!-- ID (oculto) -->
-    <input type="hidden" th:field="*{id}" />
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Editar Jugador</h1>
 
-    <!-- Nombre -->
-    <label>Nombre:</label>
-    <input type="text" th:field="*{nombre}" required /><br><br>
+    <form th:action="@{/jugador/actualizar/{id}(id=${jugador.id})}" th:object="${jugador}" method="post" class="card p-4 shadow-sm">
+        <!-- Nombre -->
+        <div class="mb-3">
+            <label class="form-label">Nombre:</label>
+            <input type="text" class="form-control" th:field="*{nombre}" required>
+        </div>
 
-    <!-- Edad -->
-    <label>Edad:</label>
-    <input type="number" th:field="*{edad}" required /><br><br>
+        <!-- Edad -->
+        <div class="mb-3">
+            <label class="form-label">Edad:</label>
+            <input type="number" class="form-control" th:field="*{edad}" required>
+        </div>
 
-    <!-- Nivel -->
-    <label>Nivel:</label>
-    <input type="text" th:field="*{nivel}" required><br><br>
+        <!-- Nivel -->
+        <div class="mb-3">
+            <label class="form-label">Nivel:</label>
+            <input type="text" class="form-control" th:field="*{nivel}" required>
+        </div>
 
-    <!-- Seleccionar Equipo -->
-    <label>Equipo:</label>
-    <select th:field="*{equipo.id}">
-        <option value="">Selecciona un equipo</option>
-        <option th:each="equipo : ${equipos}"
-                th:value="${equipo.id}"
-                th:text="${equipo.nombre}"
-                th:selected="${jugador.equipo?.id == equipo.id}">
-        </option>
-    </select>
-    <br><br>
+        <!-- Seleccionar Equipo -->
+        <div class="mb-3">
+            <label class="form-label">Equipo:</label>
+            <select class="form-select" th:field="*{equipo}">
+                <option value="">Selecciona un equipo</option>
+                <option th:each="equipo : ${equipo}"
+                        th:value="${equipo.id}"
+                        th:text="${equipo.nombre}"
+                        th:selected="${jugador.equipo?.id == equipo.id}">
+                </option>
+            </select>
+        </div>
 
-    <!-- Botón de Actualizar -->
-    <button type="submit">Actualizar Jugador</button>
-</form>
+        <!-- Botón de actualizar -->
+        <button type="submit" class="btn btn-primary w-100">Actualizar Jugador</button>
+    </form>
 
-<br><a href="/jugadores">Volver a la lista</a>
+    <!-- Enlace para volver a la lista -->
+    <div class="text-center mt-4">
+        <a class="btn btn-secondary" href="/jugadores">Volver a la lista</a>
+    </div>
+</div>
+
+<!-- Incluyendo Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

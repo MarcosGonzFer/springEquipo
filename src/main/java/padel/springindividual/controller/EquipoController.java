@@ -20,7 +20,7 @@ public class EquipoController {
     }
 
     // Listar todos los equipos
-    @GetMapping({"/", ""})
+    @GetMapping("/equipo")
     public String listarEquipos(Model model) {
         List<Equipo> equipos = repository.findAll();
         model.addAttribute("equipos", equipos);

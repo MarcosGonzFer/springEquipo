@@ -15,30 +15,30 @@ import java.util.Optional;
 public class JugadorController {
 
     private final JugadorRepository jugadorRepository;
-    private final EquipoRepository equipoRepository; // Agregar dependencia para acceder a los equipos
+    private final EquipoRepository equipoRepository;
 
     public JugadorController(JugadorRepository jugadorRepository, EquipoRepository equipoRepository) {
         this.jugadorRepository = jugadorRepository;
-        this.equipoRepository = equipoRepository; // Inicializar el repositorio de equipos
+        this.equipoRepository = equipoRepository;
     }
 
-    @GetMapping({"/", ""})
+    @GetMapping
     public String listar(Model model) {
-        model.addAttribute("jugador", jugadorRepository.findAll());
-        return "jugador";
+        model.addAttribute("jugadores", jugadorRepository.findAll());
+        return "jugadores";
     }
 
     @GetMapping("/crear")
     public String formulario(Model model) {
         model.addAttribute("jugador", new Jugador());
-        model.addAttribute("equipos", equipoRepository.findAll()); // Pasar lista de equipos al formulario
+        model.addAttribute("equipos", equipoRepository.findAll());
         return "crear_jugador";
     }
 
     @PostMapping("/guardar")
     public String agregar(@ModelAttribute Jugador jugador, Model model) {
         jugadorRepository.save(jugador);
-        return "redirect:/jugador";
+        return "redirect:/jugadores";
     }
 
     @GetMapping("/editar/{id}")
@@ -46,22 +46,22 @@ public class JugadorController {
         Optional<Jugador> jugador = jugadorRepository.findById(id);
         if (jugador.isPresent()) {
             model.addAttribute("jugador", jugador.get());
-            model.addAttribute("equipos", equipoRepository.findAll()); // Pasar lista de equipos al formulario
+            model.addAttribute("equipo", equipoRepository.findAll());
             return "editar_jugador";
         }
-        return "redirect:/jugador";
+        return "redirect:/jugadores";
     }
 
     @PostMapping("/actualizar/{id}")
     public String actualizarJugador(@PathVariable Long id, @ModelAttribute Jugador jugador) {
         jugador.setId(id);
         jugadorRepository.save(jugador);
-        return "redirect:/jugador";
+        return "redirect:/jugadores";
     }
 
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable Long id) {
         jugadorRepository.deleteById(id);
-        return "redirect:/jugador";
+        return "redirect:/jugadores";
     }
 }
